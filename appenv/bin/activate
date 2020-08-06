@@ -74,7 +74,3 @@ fi
 if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
     hash -r
 fi
-
-
-export SECRET_KEY="&3@s+_ilch2wu!v5h9ip*k7$+ij(3-_&wih&87w3f))j+$bdsi"
-export DATABASE_URL="psql://postgres:coderslab@127.0.0.1:5432/db1"

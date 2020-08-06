@@ -23,12 +23,22 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # myapp
+    'accounts',
+
+    #3rd party
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'djoser',
+
+    #built-in
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -62,23 +72,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myApp.wsgi.application'
 
-
-
 DATABASES = {
-    # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
     'default': env.db(),
 }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'db1',
-#         'PASSWORD': 'coderslab',
-#         "USER" : 'postgres',
-#         "HOST": 'localhost'
-#     }
-# }
 
 
 # Password validation
@@ -118,3 +114,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
