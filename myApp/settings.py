@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import environ
 
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -13,8 +14,8 @@ environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY',)
+# SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
@@ -62,17 +63,22 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myApp.wsgi.application'
 
 
-# Database
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db1',
-        'PASSWORD': 'coderslab',
-        "USER" : 'postgres',
-        "HOST": 'localhost'
-    }
+    # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
+    'default': env.db(),
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'db1',
+#         'PASSWORD': 'coderslab',
+#         "USER" : 'postgres',
+#         "HOST": 'localhost'
+#     }
+# }
 
 
 # Password validation
